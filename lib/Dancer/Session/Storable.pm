@@ -9,7 +9,7 @@ use Dancer::ModuleLoader;
 use Dancer::Config 'setting';
 use Dancer::FileUtils 'path';
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 # static
 
@@ -56,7 +56,10 @@ sub retrieve {
 
 sub session_file {
     my ($id) = @_;
-    return path(setting('session_dir'), "session_$id.stor");
+    return path(
+        setting('session_dir'), 
+        setting('session_name') . "_$id.stor"
+    );
 }
 
 sub destroy {
@@ -66,7 +69,7 @@ sub destroy {
 
 sub flush {
     my $self = shift;
-    Storable::nstore($self, session_file($self->{id}));
+    Storable::nstore($self, session_file($self->id));
     return $self;
 }
 
