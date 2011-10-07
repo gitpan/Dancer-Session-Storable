@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Dancer-Session-Storable
-version:            0.04
+version:            0.05
 abstract:           Storable-file-based session backend for Dancer
 author:
     - David Precious <davidp@preshweb.co.uk>
